@@ -37,9 +37,6 @@ call plug#end()
 
 "mapping
 
-	"Meta-test
-		nnoremap <M-H> ihype<Esc>
-
 	"NerdTree
 		map <C-N> : NERDTreeToggle
 
