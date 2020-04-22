@@ -91,6 +91,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias vimrc='vim ~/.vimrc'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -127,22 +128,35 @@ export HISTSIZE=1000
 alias l.='ls -d .* --color=auto'
 alias ll='ls -l --color=auto'
 alias swap='xmodmap ~/.speedswapper'
+alias fbg='firefox &'
+alias matrix='python3 ~/python_stuff/matrix_script.py'
+alias gia='zathura /home/udalny/downloads/Sbornik_zadach_po_algebre_i_analiticheskoi_geometrii_pod_red._A.S._Fedenko_.pdf &'
+
 
 # vi-mode
 set -o vi
 
+# set default editor
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/udalny/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/udalny/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/udalny/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/udalny/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+
+#__conda_setup="$('/home/udalny/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/home/udalny/anaconda3/etc/profile.d/conda.sh" ]; then
+#        . "/home/udalny/anaconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/home/udalny/anaconda3/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
+
 # <<< conda initialize <<<
+
+# add sripts dir to PATH
+export PATH="$PATH:/home/udalny/scripts"
 

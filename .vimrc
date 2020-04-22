@@ -11,8 +11,34 @@ Plug 'nvie/vim-flake8'
 "Plug 'ycm-core/YouCompleteMe' (too heavy and slow)
 Plug 'jiangmiao/auto-pairs'
 Plug 'easymotion/vim-easymotion'
+Plug 'lyokha/vim-xkbswitch'
 
 call plug#end()
+
+"vimwiki open vfiles in vim tab
+  function! VimwikiLinkHandler(link)
+    " Use Vim to open external files with the 'vfile:' scheme.  E.g.:
+    "   1) [[vfile:~/Code/PythonProject/abc123.py]]
+    "   2) [[vfile:./|Wiki Home]]
+    let link = a:link
+    if link =~# '^vfile:'
+      let link = link[1:]
+    else
+      return 0
+    endif
+    let link_infos = vimwiki#base#resolve_link(link)
+    if link_infos.filename == ''
+      echomsg 'Vimwiki Error: Unable to resolve link!'
+      return 0
+    else
+      exe 'tabnew ' . fnameescape(link_infos.filename)
+      return 1
+    endif
+  endfunction
+
+"switch layouts
+	let g:XkbSwitchEnabled = 1
+	let g:XkbSwitchIMappings = ['ru']
 
 "line numbers
 	set nu
@@ -37,6 +63,9 @@ call plug#end()
 
 "mapping
 
+	"Meta-test
+		nnoremap <M-H> ihype<Esc>
+
 	"NerdTree
 		map <C-N> : NERDTreeToggle
 
@@ -53,9 +82,12 @@ call plug#end()
 		nnoremap ,, /<++><Enter>ca>
 		inoremap ,, <Esc>/<++><Enter>ca>
 
+	"get out of brackets
+		inoremap <C-G> <Esc>/)\\|}\\|]\\|'\\|"\\|><Enter>a
+
 "python syntax highligting
-let python_highlight_all=1
-syntax on
+	let python_highlight_all=1
+	syntax on
 
 "highlight extra whitespaces
 	highlight ExtraWhitespace ctermbg=red guibg=red
